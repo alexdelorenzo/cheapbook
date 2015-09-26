@@ -68,7 +68,7 @@ class HtmlWrapper(object):
     def find(self, tag: str, _class: str=None, **kwargs):
         return find(self.html, tag, _class, **kwargs)
 
-    def find_all(self, tag: str, _class: str=None, *, gen=False, **kwargs) -> tuple:
+    def find_all(self, tag: str, _class: str=None, *, gen=False, **kwargs) -> iter or tuple:
         return find_all(self.html, tag, _class, gen=gen, **kwargs)
 
 

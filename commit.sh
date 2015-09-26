@@ -1,6 +1,7 @@
 #!/bin/bash
 
-msg=$1
+commit_msg=$1
+
 commit_files=("base.py" "check_apple.py" "parse.py" "commit.sh" "requirements.txt" "send.py")
 private_info=("EMAIL_USERNAME" "EMAIL" "EMAIL_PASSWORD" "RECEIVER_EMAIL" "SMTP_SERVER")
 private_file="base.py"
@@ -13,18 +14,19 @@ replace_with_nullstring() {
 
   for var in "${private_info[@]}"
   do
-    sed -i 's/\('$var' \=\) .*$/\1 ""/' $filename
+    sed -i 's/\('$var' \=\).*$/\1 ""/' $filename
   done
 }
 
 replace_and_backup_private_info() {
     cp $private_file $backup_file
     replace_with_nullstring private_info $private_file
-    sed -i 's/\(SEND_EMAIL \=\) .*$/\1 False/' $private_file
+    sed -i 's/\(SEND_EMAIL \=\).*$/\1 False/' $private_file
 }
 
 check_if_sufficient() {
-    cat base.py
+    cat $private_file
+
     echo -n "Sufficiently sanitized names and personal info? [y/N]: "
     read sufficient
 
@@ -41,9 +43,10 @@ check_if_sufficient() {
 commit() {
     for var in "${commit_files[@]}"
     do
-        git add $var
+        git add "$var"
     done
-    git commit -m "$msg"
+
+    git commit -m "$commit_msg"
 }
 
 restore () {

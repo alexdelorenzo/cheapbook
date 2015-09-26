@@ -11,6 +11,7 @@ FIND_TERMS = \
     "8GB of", \
     "256GB", \
     "March 2015", \
+    "13.3", \
 
 BASE_URL = "http://www.apple.com/"
 
@@ -38,7 +39,7 @@ WAIT_SECONDS = 60.0 * 3
 # Number of threads to keep in our email thread pool
 THREADS = 2
 
-LRU_CACHE_SIZE = 2
+LRU_CACHE_SIZE = 1
 
 
 class MacBook(namedtuple("MacBook", "title link price specs")):
