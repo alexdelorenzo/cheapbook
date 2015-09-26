@@ -43,7 +43,7 @@ commit() {
     do
         git add $var
     done
-    git commit -m $msg
+    git commit -m "$msg"
 }
 
 restore () {

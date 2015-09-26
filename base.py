@@ -24,8 +24,8 @@ SEND_EMAIL = False
 RECEIVER_EMAIL = ""
 
 # Login information to send an email
+SENDER_EMAIL = ""
 EMAIL_USERNAME = ""
-EMAIL = ""
 EMAIL_PASSWORD = ""
 
 # This assumes your SMTP server uses SSL

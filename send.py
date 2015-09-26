@@ -1,10 +1,10 @@
 from email.message import EmailMessage
 from smtplib import SMTP
 
-from base import EMAIL, EMAIL_USERNAME, SMTP_SERVER, EMAIL_PASSWORD, SMTP_PORT, MacBook, RECEIVER_EMAIL
+from base import SENDER_EMAIL, EMAIL_USERNAME, SMTP_SERVER, EMAIL_PASSWORD, SMTP_PORT, MacBook, RECEIVER_EMAIL
 
 
-def create_msg(recv: str, subject: str, body: str, sender: str=EMAIL) -> EmailMessage:
+def create_msg(recv: str, subject: str, body: str, sender: str=SENDER_EMAIL) -> EmailMessage:
     msg = EmailMessage()
     msg['To'] = recv
     msg['From'] = sender
@@ -16,7 +16,7 @@ def create_msg(recv: str, subject: str, body: str, sender: str=EMAIL) -> EmailMe
 
 def macbook_msg(macbook: MacBook,
                 recv: str=RECEIVER_EMAIL,
-                sender: str=EMAIL) -> EmailMessage:
+                sender: str=SENDER_EMAIL) -> EmailMessage:
     title = "[%s] %s" % (macbook.price, macbook.title)
     body = "%s\n%s" % (macbook.link, macbook.specs)
 
