@@ -21,7 +21,7 @@ MODEL_REFURB_URL = \
     BASE_URL + "shop/browse/home/specialdeals/mac/macbook_air/13"
 
 # Email information
-SEND_EMAIL = False
+SEND_EMAIL = False  # if True, fill out info below
 RECEIVER_EMAIL = ""
 
 # Login information to send an email

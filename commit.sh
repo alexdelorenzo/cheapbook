@@ -22,7 +22,7 @@ replace_with_nullstring() {
 replace_and_backup_private_info() {
     cp ${private_file} ${backup_file}
     replace_with_nullstring private_info ${private_file}
-    sed -i 's/\(SEND_EMAIL \=\).*$/\1 False/' ${private_file}
+    sed -i 's/\(SEND_EMAIL \=\).*$/\1 False  # if True, fill out info below/' ${private_file}
 }
 
 check_if_sufficient() {
