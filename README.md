@@ -46,3 +46,6 @@ Seen: 3 @ Mon Sep 28 15:08:06 2015 Sleep: 180.0
 Seen: 3 @ Mon Sep 28 15:11:07 2015 Sleep: 180.0
 Seen: 3 @ Mon Sep 28 15:14:07 2015 Sleep: 180.0
 ```
+
+# License
+See `LICENSE`
