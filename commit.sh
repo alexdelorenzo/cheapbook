@@ -1,9 +1,13 @@
 #!/bin/bash
 
+###
+### ./commit.sh "Your commit message goes here"
+###
+
 
 commit_msg=$1
 
-commit_files=("base.py" "check_apple.py" "parse.py" "commit.sh" "requirements.txt" "send.py")
+commit_files=("base.py" "check_apple.py" "parse.py" "commit.sh" "requirements.txt" "send.py" "README")
 private_info=("EMAIL_USERNAME" "EMAIL" "EMAIL_PASSWORD" "RECEIVER_EMAIL" "SMTP_SERVER")
 private_file="base.py"
 backup_file="old.py"
