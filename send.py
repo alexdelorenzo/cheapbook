@@ -17,6 +17,7 @@ def create_msg(recv: str, subject: str, body: str, sender: str=SENDER_EMAIL) -> 
 def macbook_msg(macbook: MacBook,
                 recv: str=RECEIVER_EMAIL,
                 sender: str=SENDER_EMAIL) -> EmailMessage:
+
     title = "[%s] %s" % (macbook.price, macbook.title)
     body = "%s\n%s" % (macbook.link, macbook.specs)
 
@@ -26,6 +27,7 @@ def macbook_msg(macbook: MacBook,
 def send_msg_ssl(msg: EmailMessage, username: str=EMAIL_USERNAME,
               passwd: str=EMAIL_PASSWORD, server: str=SMTP_SERVER,
               port: int=SMTP_PORT):
+
     with SMTP(server, port) as smtp_server:
         smtp_server.ehlo()
         smtp_server.starttls()
