@@ -8,10 +8,10 @@ from collections import namedtuple
 #   and copy and paste the phrases you see there
 #   exactly as you see them
 FIND_TERMS = \
-    "4GB of", \
-#    "256GB", \
-#    "March 2015", \
-#    "13.3", \
+    "8GB of", \
+    "256GB", \
+    "March 2015", \
+    "13.3", \
 
 BASE_URL = "http://www.apple.com/"
 
