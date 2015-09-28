@@ -22,11 +22,13 @@ def wrap_page(url: str=MODEL_REFURB_URL) -> HtmlWrapper:
 
 
 def gen_products(page: HtmlWrapper) -> ProductGenerator:
-    products = page.find_all('tr', 'product', gen=True)  # lazy loader
+    products = page.find_all('tr', 'product', gen=True)  # get a gen
 
     yield from products
 
 
+# func will be hit twice with the same product in some cases.
+# scraping is expensive, passing around the result is messy
 @lru_cache(maxsize=LRU_CACHE_SIZE)
 def get_specs(product: HtmlWrapper) -> str:
     return product.find('td', 'specs').text.strip()
@@ -45,6 +47,13 @@ def gen_filter_products(products: Iterable[HtmlWrapper],
             yield product
 
 
+def gen_filter_macbooks(macbooks: Iterable[MacBook],
+                        terms: Iterable[str]=FIND_TERMS) -> MacBookGenerator:
+    for macbook in macbooks:
+        if is_match(macbook.specs, terms):
+            yield macbook
+
+
 def get_macbook(product: HtmlWrapper) -> MacBook:
     header = product.h3.a
 
@@ -59,13 +68,6 @@ def get_macbook(product: HtmlWrapper) -> MacBook:
 def gen_macbooks(products: Iterable[HtmlWrapper]) -> MacBookGenerator:
     for product in products:
         yield get_macbook(product)
-
-
-def gen_filter_macbooks(macbooks: Iterable[MacBook],
-                        terms: Iterable[str]=FIND_TERMS) -> MacBookGenerator:
-    for macbook in macbooks:
-        if is_match(macbook.specs, terms):
-            yield macbook
 
 
 def gen_macbook_matches(page: HtmlWrapper,
@@ -108,6 +110,7 @@ def loop(seen: Set[MacBook],
 
         except RequestException as ex:
             sleep(1)
+            print("Retrying request.")
             continue
 
         consume_macbooks(page, terms, pool, seen, send_email)

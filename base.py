@@ -39,7 +39,7 @@ WAIT_SECONDS = 60.0 * 3
 # Number of threads to keep in our email thread pool
 THREADS = 2
 
-LRU_CACHE_SIZE = 1
+LRU_CACHE_SIZE = 1  # this is all that's needed in a sequential program
 
 
 class MacBook(namedtuple("MacBook", "title link price specs")):
