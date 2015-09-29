@@ -1,5 +1,5 @@
 # cheapbook
-Send email/SMS notifications about Apple's refurb stock
+Send email/SMS notifications about Apple's refurb stock. Also an excuse to play with Python 3.5's `typing` module.
 
 Python 3.5+ only
 
