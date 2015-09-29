@@ -8,7 +8,7 @@ Python 3.5+ only
 - Install dependencies `pip install -r requirements.txt`
 
 ## Configuration
-Open `base.py` with a text editor. Read the comments before a variable and configure. Save the file.
+Open `base.py` with a text editor. Read the comments before each variable and then configure. Save the file.
 
 Unless you are looking for the same MacBook as me, you will want to change the two following variables:
 - `FIND_TERMS` -> a tuple of exact phrases to match in the listing
