@@ -1,5 +1,5 @@
 # cheapbook
-Send email/SMS notifications about Apple's Refurb stock
+Send email/SMS notifications about Apple's refurb stock
 
 Python 3.5+ only
 
@@ -15,12 +15,12 @@ Unless you are looking for the same MacBook as me, you will want to change the t
 - `MODEL_REFURB_URL` -> url of the page to check
 
 ### Email
-Email is disabled by default. You supply your e-mail details and enable it.
+Email is disabled by default. You must supply your e-mail details and enable it.
 It is assumed your SMTP server uses SSL/TLS.
 
 To enable, open `base.py` and set `SEND_EMAIL` to `True`. You must configure the variables that follow to successfully send an email.
 
-- `SEND_EMAIL` -> default is False, if True you must set the e-mail configuration variables: `RECEIVER_EMAIL`, `SENDER_EMAIL`, `EMAIL_USERNAME`, `EMAIL_PASSWORD`, `SMTP_SERVER`, `SMTP_PORT` must not be an empty string `""`
+- `SEND_EMAIL` -> default is False, if True you must set the e-mail configuration variables: `RECEIVER_EMAIL`, `SENDER_EMAIL`, `EMAIL_USERNAME`, `EMAIL_PASSWORD`, `SMTP_SERVER` and `SMTP_PORT` must not be an empty string `""`
 
 
 ## Usage
