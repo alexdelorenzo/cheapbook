@@ -10,7 +10,6 @@ commit_msg=$1
 commit_files=("base.py" "check_apple.py" "parse.py" "commit.sh" "requirements.txt" "send.py" "README")
 private_info=("EMAIL_USERNAME" "EMAIL" "EMAIL_PASSWORD" "RECEIVER_EMAIL" "SMTP_SERVER")
 private_file="base.py"
-backup_file="old.py"
 
 
 replace_with_nullstring() {
@@ -24,7 +23,7 @@ replace_with_nullstring() {
 }
 
 replace_and_backup_private_info() {
-    cp ${private_file} ${backup_file}
+    cp ${private_file} ${private_file}.bak
     replace_with_nullstring private_info ${private_file}
     sed -i 's/\(SEND_EMAIL \=\).*$/\1 False  # if True, fill out info below/' ${private_file}
 }
@@ -35,7 +34,7 @@ check_if_sufficient() {
     echo -n "Sufficiently sanitized names and personal info? [y/N]: "
     read sufficient
 
-    case $sufficient in
+    case ${sufficient} in
         [y|Y|yes|Yes|YES])
             commit
             ;;
@@ -56,7 +55,7 @@ commit() {
 }
 
 restore () {
-    mv ${backup_file} ${private_file}
+    mv ${private_file}.bak ${private_file}
 }
 
 main() {

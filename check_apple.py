@@ -27,8 +27,8 @@ def gen_products(page: HtmlWrapper) -> ProductGenerator:
     yield from products
 
 
-# func will be hit twice with the same product in some cases.
-# scraping is expensive, passing around the result is messy
+# func will be consecutively hit twice with the same product in some cases.
+# scraping is expensive, passing around the result is messy.
 @lru_cache(maxsize=LRU_CACHE_SIZE)
 def get_specs(product: HtmlWrapper) -> str:
     return product.find('td', 'specs').text.strip()
@@ -91,10 +91,10 @@ def consume_macbooks(page: HtmlWrapper,
         print('Listing:', macbook, "\n")
 
         if macbook not in seen:
+            seen.add(macbook)
+
             if send_email:
                 pool.submit(send_macbook_msg, macbook)
-
-            seen.add(macbook)
 
 
 def loop(seen: Set[MacBook],
@@ -111,6 +111,7 @@ def loop(seen: Set[MacBook],
         except RequestException as ex:
             sleep(1)
             print("Retrying request.")
+
             continue
 
         consume_macbooks(page, terms, pool, seen, send_email)
