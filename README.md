@@ -1,5 +1,5 @@
 # cheapbook
-Send email/SMS notifications about Apple's Refurb stock
+Send email/SMS notifications about Apple's refurb stock. Also an excuse to play with Python 3.5's `typing` module.
 
 Python 3.5+ only
 
@@ -8,19 +8,19 @@ Python 3.5+ only
 - Install dependencies `pip install -r requirements.txt`
 
 ## Configuration
-Open `base.py` with a text editor. Read the comments before a variable and configure. Save the file.
+Open `base.py` with a text editor. Read the comments before each variable and then configure. Save the file.
 
 Unless you are looking for the same MacBook as me, you will want to change the two following variables:
 - `FIND_TERMS` -> a tuple of exact phrases to match in the listing
 - `MODEL_REFURB_URL` -> url of the page to check
 
 ### Email
-Email is disabled by default. You supply your e-mail details and enable it.
+Email is disabled by default. You must supply your e-mail details and enable it.
 It is assumed your SMTP server uses SSL/TLS.
 
 To enable, open `base.py` and set `SEND_EMAIL` to `True`. You must configure the variables that follow to successfully send an email.
 
-- `SEND_EMAIL` -> default is False, if True you must set the e-mail configuration variables: `RECEIVER_EMAIL`, `SENDER_EMAIL`, `EMAIL_USERNAME`, `EMAIL_PASSWORD`, `SMTP_SERVER`, `SMTP_PORT` must not be an empty string `""`
+- `SEND_EMAIL` -> default is False, if True you must set the e-mail configuration variables: `RECEIVER_EMAIL`, `SENDER_EMAIL`, `EMAIL_USERNAME`, `EMAIL_PASSWORD`, `SMTP_SERVER` and `SMTP_PORT` must not be an empty string `""`
 
 
 ## Usage
@@ -46,3 +46,6 @@ Seen: 3 @ Mon Sep 28 15:08:06 2015 Sleep: 180.0
 Seen: 3 @ Mon Sep 28 15:11:07 2015 Sleep: 180.0
 Seen: 3 @ Mon Sep 28 15:14:07 2015 Sleep: 180.0
 ```
+
+## License
+See `LICENSE`

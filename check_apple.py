@@ -3,12 +3,12 @@ from typing import Generator, Iterable, Set
 from functools import lru_cache
 from time import sleep, ctime
 
+from requests import get, RequestException
+
 from base import MacBook, MODEL_REFURB_URL, FIND_TERMS, BASE_URL, WAIT_SECONDS,\
     THREADS, LRU_CACHE_SIZE, SEND_EMAIL
 from parse import HtmlWrapper
 from send import send_macbook_msg
-
-from requests import get, RequestException
 
 
 ProductGenerator = Generator[HtmlWrapper, None, None]
