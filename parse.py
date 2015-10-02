@@ -92,8 +92,7 @@ def find_all(html: HtmlElement, tag: str,
     return wrapper_map if gen else tuple(wrapper_map)
 
 
-@lru_cache(maxsize=None)
-def get_xpath(tag: str, _class: str=None, **kwargs) -> XPath:
+def get_xpath_str(tag: str, _class: str=None, **kwargs) -> str:
     tag_xp = './/' + tag
 
     if _class:
@@ -125,4 +124,12 @@ def get_xpath(tag: str, _class: str=None, **kwargs) -> XPath:
 
         tag_xp += ']'
 
-    return XPath(tag_xp)
+    return tag_xp
+
+
+@lru_cache(maxsize=None)
+def get_xpath(tag: str, _class: str=None, **kwargs) -> XPath:
+    xpath_str = get_xpath_str(tag, _class, **kwargs)
+    
+    return XPath(xpath_str)
+
