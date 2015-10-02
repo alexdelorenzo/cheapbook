@@ -6,7 +6,7 @@ from time import sleep, ctime
 from requests import get, RequestException
 
 from base import MacBook, MODEL_REFURB_URL, FIND_TERMS, BASE_URL, WAIT_SECONDS,\
-    THREADS, LRU_CACHE_SIZE, SEND_EMAIL
+    THREADS, LRU_CACHE_SIZE, SEND_EMAIL, RETRY
 from parse import HtmlWrapper
 from send import send_macbook_msg
 
@@ -79,15 +79,12 @@ def gen_macbook_matches(page: HtmlWrapper,
     yield from macbooks_gen
 
 
-def consume_macbooks(page: HtmlWrapper,
-                     terms: Iterable[str],
+def consume_macbooks(macbooks: Iterable[MacBook],
                      pool: ThreadPoolExecutor,
                      seen: Set[MacBook],
                      send_email: bool) -> None:
 
-    macbook_matches = gen_macbook_matches(page, terms)
-
-    for macbook in macbook_matches:
+    for macbook in macbooks:
         print('Listing:', macbook, "\n")
 
         if macbook not in seen:
@@ -109,12 +106,13 @@ def loop(seen: Set[MacBook],
             page = wrap_page(url)
 
         except RequestException as ex:
-            sleep(1)
+            sleep(RETRY)
             print("Retrying request.")
 
             continue
 
-        consume_macbooks(page, terms, pool, seen, send_email)
+        macbooks = gen_macbook_matches(page, terms)
+        consume_macbooks(macbooks, pool, seen, send_email)
 
         print("Seen:", len(seen), "@", ctime(), "Sleep:", wait)
         sleep(wait)

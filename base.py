@@ -1,6 +1,5 @@
 from collections import namedtuple
 
-
 # Match Terms
 #  A tuple of EXACT case-sensitive terms you know
 #  will be in your listing
@@ -36,6 +35,9 @@ SMTP_PORT = 587
 
 # Check apple.com every WAIT_SECONDS seconds
 WAIT_SECONDS = 60.0 * 3
+
+# Retry failed request every RETRY seconds
+RETRY = 3.0
 
 # Number of threads to keep in our email thread pool
 THREADS = 2
